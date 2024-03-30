@@ -2,62 +2,28 @@
  * Canvas and Context
  */
 const canvas = document.getElementById('canvas');
+const container = document.getElementById('container');
 const ctx = canvas.getContext('2d');
 
 /**
  * Map
  */
-const map = [
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,1,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-    [0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0,   0,0,0,0,0],
-];
+const mapSize = 60;
+let map = new Array(mapSize).fill(0).map((e) => new Array(mapSize).fill(0));
 
 /**
  * Cell Size
  */
-const cellSize = 20;
+const cellSize = 13;
 
 /**
  * Cell Params
  */
 const cellStrokeColor = 'rgb(74,74,74)';
 const cellStrokeWidth = 1;
-const sandStrokeColor = '#8e5e2d';
+const sandStrokeColor = '#ffeab4';
 const sandColor = '#ffeab4';
-const sandStrokeWidth = 2;
+const sandStrokeWidth = 3;
 
 /**
  * Setting Size Params
@@ -76,26 +42,110 @@ function renderMap() {
             /**
              * Calculate position of cell
              */
-            const x = xi * cellSize;
-            const y = yi * cellSize;
+            const y = (map.length - 1 - yi) * cellSize;
+            const x = (yr.length - 1 - xi) * cellSize;
+            const currentCell = map[map.length - 1 - yi][yr.length - 1 - xi]; // reversed iteration
 
-            if (map[yi][xi] === 0) {
+            if (currentCell === 0) {
+                ctx.fillStyle = '#414141';
+                ctx.fillRect(x, y, cellSize, cellSize);
                 ctx.strokeStyle = cellStrokeColor;
                 ctx.lineWidth = cellStrokeWidth;
                 ctx.strokeRect(x, y, cellSize, cellSize);
-            } else if (map[yi][xi] === 1) {
+            } else {
                 ctx.fillStyle = sandColor;
-                ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                ctx.fillRect(x, y, cellSize, cellSize);
+                setSandStroke(yr.length - 1 - xi, map.length - 1 - yi)
+            }
+        })
+    })
 
-                /* Stroke Of Sand */
-                ctx.strokeStyle = sandStrokeColor;
-                ctx.lineWidth = cellStrokeWidth;
-                ctx.strokeRect(x*cellSize + cellStrokeWidth/2, y*cellSize + cellStrokeWidth/2, cellSize - cellStrokeWidth, cellSize - cellStrokeWidth);
+    /**
+     * Check for fall
+     */
+    map.forEach((yr, yi) => {
+        yr.forEach((xc, xi) => {
+            /**
+             * Calculate position of cell
+             */
+            const y = (map.length - 1 - yi) * cellSize;
+            const x = (yr.length - 1 - xi) * cellSize;
+            const currentCell = map[map.length - 1 - yi][yr.length - 1 - xi]; // reversed iteration
+            const nextYLine = map[map.length - yi];
+
+            if (!nextYLine) return false;
+            else if (currentCell === 1 && nextYLine[yr.length - 1 - xi] === 0) {
+                map[map.length - 1 - yi][yr.length - 1 - xi] = 0;
+                map[map.length - yi][yr.length - 1 - xi] = 1;
+                return false;
+            } else if (currentCell === 1 && nextYLine[yr.length - 1 - xi] !== 0) {
+                const isRightFallAvailable = nextYLine[yr.length - xi] === 0;
+                const isLeftFallAvailable = nextYLine[yr.length - 2 - xi] === 0;
+                const bothDirAvailable = isRightFallAvailable && isLeftFallAvailable;
+
+                /**
+                 * Check side fall
+                 */
+                if (!bothDirAvailable) {
+                    if (isLeftFallAvailable) {
+                        map[map.length - 1 - yi][yr.length - 1 - xi] = 0;
+                        nextYLine[yr.length - 2 - xi] = 1;
+                    } else if(isRightFallAvailable) {
+                        map[map.length - 1 - yi][yr.length - 1 - xi] = 0;
+                        nextYLine[yr.length - xi] = 1;
+                    } else return false;
+                } else {
+                    const random = Math.floor(Math.random()*(1-1+1))+1;
+                    const dir = random >= 5 ? 'right' : 'left';
+
+                    if (dir === 'right') {
+                        map[map.length - 1 - yi][yr.length - 1 - xi] = 0;
+                        nextYLine[yr.length - xi] = 1;
+                    } else if (dir === 'left') {
+                        map[map.length - 1 - yi][yr.length - 1 - xi] = 0;
+                        nextYLine[yr.length - 2 - xi] = 1;
+                    }
+                }
             }
         })
     })
 }
-renderMap();
+
+/**
+ * Set Sand Stroke
+ */
+function setSandStroke(x, y) {
+    const isAroundCellInMap = {
+        top: map[y - 1] ? map[y - 1][x] : 0,
+        right: map[y][x + 1] ?? 0,
+        bottom: map[y + 1] ? map[y + 1][x] : 0,
+        left: map[y][x - 1] ?? 0 ,
+    };
+    for (const [key, value] of Object.entries(isAroundCellInMap)) {
+        if (value) continue;
+
+        ctx.fillStyle = '#ba5700';
+
+        switch (key) {
+            case 'top':
+                ctx.fillRect(x*cellSize, y*cellSize, cellSize, 3);
+                break;
+            case 'right':
+                ctx.fillRect(x*cellSize + cellSize - 2, y*cellSize, 3, cellSize + 3);
+                break;
+            case 'bottom':
+                ctx.fillRect(x*cellSize, y*cellSize + cellSize, cellSize, 3);
+                break;
+            case 'left':
+                ctx.fillRect(x*cellSize, y*cellSize, 3, cellSize + 3);
+                break;
+        }
+    }
+}
+map[59][59] = 1;
+map[59][58] = 1;
+map[59][57] = 1;
+map[58][58] = 1;
 
 /**
  * Separator Line
@@ -104,24 +154,41 @@ ctx.fillStyle = 'black';
 ctx.fillRect(0, (cellSize * map.length), canvas.width, 10);
 
 /**
+ * Buttons
+ */
+function createButton(text, callback) {
+    const button = document.createElement('button');
+    button.classList.add('canvas-button');
+    button.innerText = text;
+    container.childNodes[3].append(button);
+    button.addEventListener('click', callback);
+}
+/**
  * Mouse States
  */
 let isMouseDown = false;
-let intervalId = null;
-
-/**
- * Mechanic Params
- */
-const speedRenderSand = 6;
+let isMouseIn = false;
+const mousePos = {
+    x: 0,
+    y: 0,
+}
 
 /**
  * Canvas Events
  */
+canvas.addEventListener('mouseenter', () => {
+    isMouseIn = true;
+});
+canvas.addEventListener('mouseleave', () => {
+    isMouseIn = false;
+});
 canvas.addEventListener('mousedown', (event) => {
     /**
      * Calculate Cell Clicked Position
      */
     const cp = getCellPosition(event.offsetX, event.offsetY);
+    mousePos.x = event.offsetX;
+    mousePos.y = event.offsetY;
 
     /**
      * Toggle Mouse State
@@ -132,14 +199,12 @@ canvas.addEventListener('mousedown', (event) => {
      * Check if click on map cell
      */
     if (cp.x < mapWidth && cp.y < mapHeight) {
-        intervalPutSend(cp.x, cp.y);
-        putSend(cp.x, cp.y);
+        map[cp.y][cp.x] = 1;
     }
 })
-canvas.addEventListener('mouseup', () => {
+window.addEventListener('mouseup', () => {
     isMouseDown = false;
-    clearInterval(intervalId);
-})
+});
 canvas.addEventListener('mousemove', (event) => {
     /**
      * Calculate Cell Clicked Position
@@ -149,78 +214,12 @@ canvas.addEventListener('mousemove', (event) => {
     /**
      * Check if click on map cell
      */
-    if (!(cp.x < mapWidth && cp.y < mapHeight)) return;
+    if (!(event.offsetX < mapWidth && event.offsetY < mapHeight)) return;
 
-    if (isMouseDown) {
-        clearInterval(intervalId);
-        intervalPutSend(cp.x, cp.y);
-        putSend(cp.x, cp.y);
-    } else {
-        return ctx.clearRect(0, 0, 20, 20);
+    if (isMouseDown && isMouseIn && !map[cp.y][cp.x]) {
+        map[cp.y][cp.x] = 1;
     }
-})
-
-/**
- * Put Rect of Sand
- */
-function putSend(x, y) {
-    const cell = map[y][x];
-
-    if (cell === 0) {
-        /* Sand Square */
-        ctx.fillStyle = sandColor;
-        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-
-        /* Stroke Of Sand */
-        ctx.strokeStyle = sandStrokeColor;
-        ctx.lineWidth = cellStrokeWidth;
-        ctx.strokeRect(x*cellSize + cellStrokeWidth/2, y*cellSize + cellStrokeWidth/2, cellSize - cellStrokeWidth, cellSize - cellStrokeWidth);
-        map[y][x] = 1;
-
-        fallCellDown(x, y);
-    }
-}
-
-/**
- * Function to make cell fall down through map
- */
-function fallCellDown(x, y) {
-    let timeout = 0;
-
-    function fall() {
-        timeout++
-
-        if (!(timeout % speedRenderSand)) {
-
-            if (map[y + 1][x]) {
-                return delayBeforeStop(x, y);
-                // return;
-            }
-
-            clearCell(x, y);
-            putSend(x, ++y);
-        }
-
-        if(map[y + 1] === undefined) {
-            return false;
-        } else {
-            requestAnimationFrame(fall);
-        }
-    }
-    requestAnimationFrame(fall);
-}
-
-/**
- * Make Cell Empty
- */
-function clearCell (x, y) {
-    ctx.clearRect(x*cellSize, y*cellSize, cellSize, cellSize);
-    ctx.strokeStyle = cellStrokeColor;
-    ctx.lineWidth = cellStrokeWidth;
-    ctx.strokeRect(x*cellSize + cellStrokeWidth/2, y*cellSize + cellStrokeWidth/2, cellSize - cellStrokeWidth, cellSize - cellStrokeWidth);
-    map[y][x] = 0;
-}
-
+});
 /**
  * Get Cell Position in Map Array
  */
@@ -235,35 +234,27 @@ function getCellPosition(offsetX, offsetY) {
 }
 
 /**
- * Delay before off fall
+ * Clear Map
  */
-const timeout = 2000;
-let timeoutId = null;
-let delayId = null;
-function delayBeforeStop(x ,y) {
-    timeoutId = setTimeout(() => {
-        cancelAnimationFrame(delayId);
-    }, timeout);
-    function delay() {
-        if (map[y + 1][x]) {
-            delayId = requestAnimationFrame(delay);
-        } else {
-            clearCell(x, y);
-            // putSend(x, ++y);
-            // clearTimeout(timeoutId);
-            // cancelAnimationFrame(delayId);
-        }
-    }
-
-    delay();
+function clearMap() {
+    map = new Array(mapSize).fill(0).map((e) => new Array(mapSize).fill(0));
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, (cellSize * map.length), canvas.width, 10);
 }
 
 /**
- * Interval White non-move mouse and clicked button
+ * Setup for render init
  */
-function intervalPutSend(x, y) {
-    const interval = 100;
-    intervalId = setInterval(() => {
-        putSend(x, y);
-    }, interval);
+function setup() {
+    setInterval(() => {
+        renderMap();
+    }, 35);
+
+    setTimeout(() => {
+        createButton('Clear', clearMap);
+    }, 1000);
 }
+/**
+ * Entry
+ */
+setup();

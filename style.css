@@ -1,5 +1,3 @@
-
-
 body {
 	overflow: hidden;
 	display: flex;
@@ -8,7 +6,53 @@ body {
 	height: 100vh;
 	background: #000000;
 }
-
+* {
+	user-select: none;
+}
 canvas{
 	background: #414141;
+}
+h1{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	color: white;
+	font-family: 'Pixelify Sans', sans-serif;
+	pointer-events: none;
+	opacity: 0;
+}
+#container{
+	position: relative;
+}
+.buttons{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 20px;
+	width: 100%;
+	height: 90px;
+	position: absolute;
+	bottom: 5px;
+	left: 0;
+	z-index: 99;
+	padding: 0 40px;
+	box-sizing: border-box;
+	flex-direction: row-reverse;
+}
+.canvas-button {
+	font-family: 'Pixelify Sans', sans-serif;
+	font-size: 24px;
+	padding: 6px 10px;
+	background: red;
+	color: white;
+	border: 2px solid rgba(0,0,0,.3);
+	cursor: pointer;
+	transition: .1s;
+}
+.canvas-button:hover{
+	background: #ff7171;
+}
+.canvas-button:active{
+	background: #ffadad;
+	border: 2px solid rgba(0,0,0,.3);
 }
